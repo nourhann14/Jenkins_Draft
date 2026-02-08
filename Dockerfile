@@ -1,12 +1,12 @@
-FROM jenkins/jenkins:lts-slim
+FROM jenkins/jenkins:lts-slim 
+#same image i run from
 
 
-
-
+#switch user, run as root
 USER root
 
 
-
+#ran command to install docker CLI
 RUN apt-get update && \
 
     apt-get install -y ca-certificates curl gnupg && \
@@ -32,7 +32,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 
-
+#the switched to the old user
 USER jenkins
 
 
