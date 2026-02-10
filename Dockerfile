@@ -1,58 +1,60 @@
-FROM jenkins/jenkins:lts-slim 
-#same image i run from
+FROM alpine:latest
+CMD ["echo", "Hello from Jenkins"]
+# FROM jenkins/jenkins:lts-slim 
+# #same image i run from
 
 
-#switch user, run as root
-USER root
+# #switch user, run as root
+# USER root
 
 
-#ran command to install docker CLI
-RUN apt-get update && \
+# #ran command to install docker CLI
+# RUN apt-get update && \
 
-    apt-get install -y ca-certificates curl gnupg && \
+#     apt-get install -y ca-certificates curl gnupg && \
 
-    mkdir -p /etc/apt/keyrings && \
+#     mkdir -p /etc/apt/keyrings && \
 
-    curl -fsSL https://download.docker.com/linux/debian/gpg \
+#     curl -fsSL https://download.docker.com/linux/debian/gpg \
 
-      | gpg --dearmor -o /etc/apt/keyrings/docker.gpg && \
+#       | gpg --dearmor -o /etc/apt/keyrings/docker.gpg && \
 
-    echo \
+#     echo \
 
-      "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] \
+#       "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] \
 
-      https://download.docker.com/linux/debian bookworm stable" \
+#       https://download.docker.com/linux/debian bookworm stable" \
 
-      > /etc/apt/sources.list.d/docker.list && \
+#       > /etc/apt/sources.list.d/docker.list && \
 
-    apt-get update && \
+#     apt-get update && \
 
-    apt-get install -y docker-ce-cli && \
+#     apt-get install -y docker-ce-cli && \
 
-    rm -rf /var/lib/apt/lists/*
-
-
-#the switched to the old user
-USER jenkins
+#     rm -rf /var/lib/apt/lists/*
 
 
+# #the switched to the old user
+# USER jenkins
 
-# to run
 
-# docker build -t jenkins-with-docker .
 
-# docker run -d \
+# # to run
 
-#   --name jenkins \
+# # docker build -t jenkins-with-docker .
 
-#   --user root \
+# # docker run -d \
 
-#   -p 8080:8080 \
+# #   --name jenkins \
 
-#   -p 50000:50000 \
+# #   --user root \
 
-#   -v /var/run/docker.sock:/var/run/docker.sock \
+# #   -p 8080:8080 \
 
-#   -v jenkins_home:/var/jenkins_home \
+# #   -p 50000:50000 \
 
-#   jenkins-with-docker
+# #   -v /var/run/docker.sock:/var/run/docker.sock \
+
+# #   -v jenkins_home:/var/jenkins_home \
+
+# #   jenkins-with-docker
